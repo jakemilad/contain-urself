@@ -1,0 +1,2 @@
+run this app in linux w docker:
+docker run -it --rm --privileged -v $(pwd):/app -w /app golang:1.24 bash
