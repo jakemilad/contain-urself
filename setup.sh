@@ -16,8 +16,8 @@ cp /bin/{bash,ls,echo,ps,mount,cat,top} $CONTAINER_ROOT/bin/ 2>/dev/null || {
 }
 
 # Add networking tools
-cp /sbin/ip $CONTAINER_ROOT/bin/ 2>/dev/null || echo "ip command not found"
-cp /bin/ping $CONTAINER_ROOT/bin/ 2>/dev/null || echo "ping command not found"
+cp /usr/sbin/ip $CONTAINER_ROOT/bin/ 2>/dev/null || echo "ip command not found"
+cp /usr/bin/ping $CONTAINER_ROOT/bin/ 2>/dev/null || echo "ping command not found"
 
 echo "Copying ARM64 libraries..."
 # Core libraries
@@ -42,6 +42,21 @@ cp /lib/aarch64-linux-gnu/liblzma.so.5 $LIB_DIR/
 cp /lib/aarch64-linux-gnu/libzstd.so.1 $LIB_DIR/
 cp /lib/aarch64-linux-gnu/liblz4.so.1 $LIB_DIR/
 cp /lib/aarch64-linux-gnu/libgpg-error.so.0 $LIB_DIR/
+
+# networking libraries
+echo "Copying networking libraries..."
+# Networking libraries for ip command
+cp /lib/aarch64-linux-gnu/libbpf.so.1 $LIB_DIR/
+cp /lib/aarch64-linux-gnu/libelf.so.1 $LIB_DIR/
+cp /lib/aarch64-linux-gnu/libmnl.so.0 $LIB_DIR/
+cp /lib/aarch64-linux-gnu/libbsd.so.0 $LIB_DIR/
+cp /lib/aarch64-linux-gnu/libz.so.1 $LIB_DIR/
+cp /lib/aarch64-linux-gnu/libmd.so.0 $LIB_DIR/
+
+# Networking libraries for ping command  
+cp /lib/aarch64-linux-gnu/libidn2.so.0 $LIB_DIR/
+cp /lib/aarch64-linux-gnu/libunistring.so.2 $LIB_DIR/
+
 
 echo "Creating container-init script..."
 cat > $CONTAINER_ROOT/bin/container-init << 'EOF'
