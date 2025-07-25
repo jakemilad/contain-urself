@@ -12,7 +12,7 @@ mkdir -p $LIB_DIR
 
 echo "Copying binaries..."
 cp /bin/{bash,ls,echo,ps,mount,cat,top} $CONTAINER_ROOT/bin/ 2>/dev/null || {
-    echo "⚠️  Some binaries might not exist, continuing..."
+    echo "Some binaries might not exist, continuing..."
 }
 
 echo "Copying ARM64 libraries..."
@@ -55,10 +55,10 @@ EOF
 
 chmod +x $CONTAINER_ROOT/bin/container-init
 
-echo "✅ Setup complete!"
+echo "Setup complete!"
 echo ""
-echo "🎯 You can now run: go run main.go run /bin/bash"
-echo "📊 Try these commands in your container:"
+echo "You can now run: go run main.go run /bin/bash"
+echo "Try these commands in your container:"
 echo "   ps aux     - See isolated processes"
 echo "   ls /       - See container filesystem" 
 echo "   echo \$\$    - See PID (should be 1)"
