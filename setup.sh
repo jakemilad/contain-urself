@@ -15,6 +15,10 @@ cp /bin/{bash,ls,echo,ps,mount,cat,top} $CONTAINER_ROOT/bin/ 2>/dev/null || {
     echo "Some binaries might not exist, continuing..."
 }
 
+# Add networking tools
+cp /sbin/ip $CONTAINER_ROOT/bin/ 2>/dev/null || echo "ip command not found"
+cp /bin/ping $CONTAINER_ROOT/bin/ 2>/dev/null || echo "ping command not found"
+
 echo "Copying ARM64 libraries..."
 # Core libraries
 cp /lib/aarch64-linux-gnu/libc.so.6 $LIB_DIR/

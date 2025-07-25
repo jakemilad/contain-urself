@@ -60,7 +60,7 @@ func runApplication(programToRun string) {
 	cmd.Stdin = os.Stdin
 
 	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Cloneflags: unix.CLONE_NEWPID | unix.CLONE_NEWNS,
+		Cloneflags: unix.CLONE_NEWPID | unix.CLONE_NEWNS | unix.CLONE_NEWNET,
 		Chroot:     containerRoot,
 	}
 
